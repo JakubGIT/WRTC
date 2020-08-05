@@ -27,7 +27,7 @@ run<br>
     npm start
   
 <br>
-join<br>
+join<br><br>
   https://[IP-Adress of the computer]:4444<br>
   max. 2 participants<br>
 
