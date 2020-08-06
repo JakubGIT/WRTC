@@ -7,7 +7,7 @@ const checkboxTheme = document.querySelector('#theme')
 let client = {}
 let currentFilter
 //get stream
-navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+navigator.mediaDevices.getUserMedia({ video: true, audio: false })
     .then(stream => {
         socket.emit('NewClient')
         video.srcObject = stream
