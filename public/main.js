@@ -15,6 +15,11 @@ navigator.mediaDevices.getUserMedia(constraints)
         video.srcObject = stream
         video.play()
 
+        // mute yourself
+        video.addEventListener('click', () => {
+            stream.getAudioTracks()[0].enabled = !(stream.getAudioTracks()[0].enabled)
+        })
+
         //initialize a peer
         function InitPeer(type) {
             let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream, trickle: false })

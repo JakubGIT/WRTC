@@ -1,6 +1,11 @@
 video {
 }
 
+video:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
 .select {
     height: 30px;
 }
@@ -11,11 +16,6 @@ video {
 
 .h-10 {
     height: 10% !important;
-}
-
-#peerVideo:hover {
-    opacity: 0.6;
-    cursor: pointer;
 }
 
 .centered {

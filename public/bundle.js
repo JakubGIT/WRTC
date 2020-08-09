@@ -8184,9 +8184,15 @@ let client = {}
 //get stream
 navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
+        //document.getElementById('selfDiv').innerHTML = "Click to Mute/Unmute"
         socket.emit('NewClient')
         video.srcObject = stream
         video.play()
+
+        // mute yourself
+        video.addEventListener('click', () => {
+            stream.getAudioTracks()[0].enabled = !(stream.getAudioTracks()[0].enabled)
+        })
 
         //initialize a peer
         function InitPeer(type) {
@@ -8238,9 +8244,8 @@ navigator.mediaDevices.getUserMedia(constraints)
             video.setAttribute('class', 'embed-responsive-item')
             document.querySelector('#peerDiv').appendChild(video)
             video.play()
-            //wait for 1 sec
-            //setTimeout(() => SendFilter(currentFilter), 1000)
 
+            // mute the partner
             video.addEventListener('click', () => {
                 if (video.volume != 0)
                     video.volume = 0
@@ -8250,14 +8255,9 @@ navigator.mediaDevices.getUserMedia(constraints)
 
         }
 
+        // already 2 peers active
         function SessionActive() {
             document.write('Session Active. Please come back later')
-        }
-
-        function SendFilter(filter) {
-            if (client.peer) {
-                client.peer.send(filter)
-            }
         }
 
         function RemovePeer() {
