@@ -4,7 +4,7 @@ let socket = io()
 const video = document.querySelector('video')
 const constraints = window.constraints = {
   audio: true,
-  video: true
+  video: false
 };
 let client = {}
 

@@ -8177,14 +8177,13 @@ let socket = io()
 const video = document.querySelector('video')
 const constraints = window.constraints = {
   audio: true,
-  video: true
+  video: false
 };
 let client = {}
 
 //get stream
 navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
-        //document.getElementById('selfDiv').innerHTML = "Click to Mute/Unmute"
         socket.emit('NewClient')
         video.srcObject = stream
         video.play()
