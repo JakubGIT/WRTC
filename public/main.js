@@ -22,7 +22,9 @@ navigator.mediaDevices.getUserMedia(constraints)
 
         //initialize a peer
         function InitPeer(type) {
-            let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream, trickle: false })
+            let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream, trickle: false,
+                config: { iceServers: [{ urls: 'stun:stun.l.google.com:19302' },
+                { urls: 'stun:stun.gmx.de:3478' }] }})
             peer.on('stream', function (stream) {
                 CreateVideo(stream)
             })
