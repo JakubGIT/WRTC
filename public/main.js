@@ -26,7 +26,9 @@ navigator.mediaDevices.getUserMedia(constraints)
                 config: { iceServers: [
                     { urls: 'stun:stun.l.google.com:19302' },
                     { urls: 'stun:stun.gmx.de:3478' },
-                    { url: 'turn:relay.backups.cz', credential: 'webrtc', username: 'webrtc' }]}})
+                    { url: 'turn:relay.backups.cz', credential: 'webrtc', username: 'webrtc' }
+                ]}
+            })
             peer.on('stream', function (stream) {
                 CreateVideo(stream)
             })
