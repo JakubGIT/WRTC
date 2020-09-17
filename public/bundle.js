@@ -8171,7 +8171,6 @@ function config (name) {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],34:[function(require,module,exports){
-
 let Peer = require('simple-peer')
 let socket = io()
 const video = document.querySelector('video')
@@ -8184,7 +8183,6 @@ let client = {}
 //get stream
 navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
-        //document.getElementById('selfDiv').innerHTML = "Click to Mute/Unmute"
         socket.emit('NewClient')
         video.srcObject = stream
         video.play()
@@ -8196,7 +8194,13 @@ navigator.mediaDevices.getUserMedia(constraints)
 
         //initialize a peer
         function InitPeer(type) {
-            let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream, trickle: false })
+            let peer = new Peer({ initiator: (type == 'init') ? true : false, stream: stream, trickle: false,
+                config: { iceServers: [
+                    { urls: 'stun:stun.l.google.com:19302' },
+                    { urls: 'stun:stun.gmx.de:3478' },
+                    { url: 'turn:relay.backups.cz', credential: 'webrtc', username: 'webrtc' }
+                ]}
+            })
             peer.on('stream', function (stream) {
                 CreateVideo(stream)
             })
